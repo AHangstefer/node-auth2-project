@@ -11,7 +11,20 @@ function find(){
         .select("users.id", "users.username", "users.department")
 }
 
+function findByUsername(username){
+    return db("users")
+        .select("users.username")
+}
+
+function findByDepartment(deparment){
+    return db("users")
+        .select("users.department")
+}
+
 module.exports = {
     add,
-    find
+    find,
+    findByUsername,
+    findByDepartment
+    
 }
