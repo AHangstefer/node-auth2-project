@@ -8,23 +8,31 @@ async function add(user){
 
 function find(){
     return db("users")
-        .select("users.id", "users.username", "users.department")
+        .select("id", "username", "department")
 }
 
 function findByUsername(username){
     return db("users")
-        .select("users.username")
+        .select("username")
 }
 
 function findByDepartment(deparment){
     return db("users")
-        .select("users.department")
+        .select("department")
+}
+
+function findById(id){
+    return db("users")
+        .select("id", "username")
+        .where({id})
+        .first()
 }
 
 module.exports = {
     add,
     find,
     findByUsername,
-    findByDepartment
+    findByDepartment,
+    findById
     
 }

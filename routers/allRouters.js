@@ -17,13 +17,13 @@ router.get("/users", async (req, res, next)=> {
 router.post("/register", async (req, res, next)=> {
     try {
         const {username, password, department} = req.body
-        const user = await Users.findByUsername(username)
+        // const user = await Users.findByUsername(username)
 
-        if(user){
-            return res.status(409).json({
-                message: "Username is already taken"
-            })
-        }
+        // if(user){
+        //     return res.status(409).json({
+        //         message: "Username is already taken"
+        //     })
+        // }
 
         const newUser = await Users.add({
             username,
@@ -41,7 +41,7 @@ router.post("/register", async (req, res, next)=> {
 router.post("/login", async (req, res, next)=> {
     try{
         const { username, password } = req.body
-        const user = await Users.findByname(username)
+        const user = await Users.findByName(username)
 
         if(!user) {
             return res.status(401).json({
