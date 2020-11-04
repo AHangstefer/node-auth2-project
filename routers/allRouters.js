@@ -41,7 +41,7 @@ router.post("/register", async (req, res, next)=> {
 router.post("/login", async (req, res, next)=> {
     try{
         const { username, password } = req.body
-        const user = await Users.findByName(username)
+        const user = await Users.findByUsername(username)
 
         if(!user) {
             return res.status(401).json({
@@ -49,7 +49,7 @@ router.post("/login", async (req, res, next)=> {
             })
         }
 
-        const passwordValid = await bycrypt.compare(password, user.password)
+        const passwordValid = await bcrypt.compare(password, user.password)
 
         if(!passwordValid) {
             return res.status(401).json({
